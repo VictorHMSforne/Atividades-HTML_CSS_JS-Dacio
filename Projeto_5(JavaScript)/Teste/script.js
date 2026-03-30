@@ -1,11 +1,12 @@
 const img = document.getElementById("main");
 const bnt = document.getElementById("btn");
+const tgl = document.getElementById("tgl")
 
 const estados = {
     normal: "Panda_IA.png",
     comendo: "PandaComendo_IA.png",
     triste: "PandaTriste_IA.png",
-    feliz: "PandaRadical_IA.png",
+    bravo: "PandaFaminto_IA.png",
     alimentado: "PandaAlimentado_IA.png",
     obesoTriste: "PandaGordoTriste_IA.png",
 }
@@ -14,6 +15,9 @@ let contador = 0;
 let intervalo = null;
 let timeClick = null;
 let timeOut = null;
+let fundoDia = "FlorestaDia.png";
+let fundoNoite = "FlorestaNoite.png"
+let horas = 0;
 let jahComeu = 0;
 
 function controlador(){
@@ -31,7 +35,7 @@ function controlador(){
             img.src = estados.triste
         }
         if(contador == 60){
-            img.src = estados.feliz
+            img.src = estados.bravo
         }
 
     },1000)
@@ -53,6 +57,17 @@ function alimentar(){
                 img.src = estados.normal;
             },2000);
         },1000);
+
+};
+
+function atualizarFundo(){
+    if (tgl.checked) {
+        document.body.classList.add('dark-mode');
+        document.body.style.backgroundImage = `url('${fundoNoite}')`;  
+    } else {
+        document.body.classList.remove('dark-mode');
+        document.body.style.backgroundImage = `url('${fundoDia}')`; 
+    }
 
 };
 
