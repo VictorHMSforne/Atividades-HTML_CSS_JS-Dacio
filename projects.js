@@ -70,7 +70,7 @@ const projects = [
     colorB: "#0a2c19",
     desc: "Minha versão em HTMl da atividade do Dácio",
     stack: ["HTML"],
-    url: "atividade-Minha_Versao.html"
+    url: "Projeto_3/atividade-Minha_Versao.html"
   },
   {
     bimestre: "1",
