@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa do Mundo 2026</title>
+    <style>
+        /* ===== QUESTÃO 02 - CSS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;  /* cor de fundo suave */
+            color: #2c3e50;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Estilização do header */
+        header {
+            background: linear-gradient(135deg, #1a2a3a, #2c3e50);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Navegação - Questão 01 */
+        nav {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        nav a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 18px;
+            margin: 0 5px;
+            border-radius: 6px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        /* Seções - Questão 01 e 02 */
+        section {
+            background: white;  /* cor de fundo suave para cada seção */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        section h2 {
+            font-size: 1.5em;  /* tamanho de fonte destacado */
+            font-weight: 700;
+            color: #2c3e50;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1em;
+            margin-bottom: 12px;
+            text-align: justify;  /* texto justificado */
+        }
+
+        section small {
+            display: block;
+            margin-top: 8px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* Botão - Questão 03 */
+        .btn-jogos {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-jogos:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+
+        /* Container da imagem - Questão 03 */
+        #tabela-jogos {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #tabela-jogos img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: opacity 0.5s;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.85em;
+            margin-top: 30px;
+        }
+
+        /* Espaçamento entre itens */
+        .info-item {
+            margin-bottom: 15px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            header h1 { font-size: 1.6em; }
+            section { padding: 18px; }
+            nav a { display: inline-block; margin: 3px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>🌍 Copa do Mundo 2026</h1>
+            <p>Estados Unidos • Canadá • México</p>
+        </header>
+
+        <!-- QUESTÃO 01 - NAVEGAÇÃO -->
+        <nav>
+            <a href="#organizacao">🌍 Organização</a>
+            <a href="#formato">⚽ Novo Formato</a>
+            <a href="#expectativas">🏆 Expectativas</a>
+        </nav>
+
+        <!-- QUESTÃO 01 - SEÇÕES -->
+        <section id="organizacao">
+            <h2>🌍 Organização e Sedes</h2>
+            <p>A Copa do Mundo FIFA de 2026 será a primeira edição realizada em três países: Estados Unidos, Canadá e México. Essa será também a maior Copa da história em número de cidades-sede, com partidas distribuídas por diversas regiões da América do Norte, ampliando o alcance global do torneio.</p>
+            <small>Fonte: FIFA - 2026 World Cup</small>
+        </section>
+
+        <section id="formato">
+            <h2>⚽ Novo Formato</h2>
+            <p>O torneio contará com 48 seleções, em vez das tradicionais 32. As equipes serão divididas em grupos, aumentando o número total de jogos e dando mais oportunidades para países de diferentes continentes participarem. Essa mudança foi promovida pela FIFA para tornar a competição mais inclusiva e competitiva.</p>
+            <small>Fonte: FIFA - 2026 World Cup</small>
+        </section>
+
+        <section id="expectativas">
+            <h2>🏆 Expectativas e Impacto</h2>
+            <p>A edição de 2026 promete ser uma das mais assistidas da história, com grande impacto econômico e cultural nos países-sede. Além disso, seleções tradicionais e emergentes devem protagonizar jogos de alto nível, aumentando ainda mais o interesse global pelo futebol e fortalecendo o esporte em novas regiões.</p>
+            <small>Fonte: FIFA - 2026 World Cup</small>
+        </section>
+
+        <!-- QUESTÃO 03 - BOTÃO E IMAGEM -->
+        <section>
+            <h2>📋 Tabela de Jogos</h2>
+            <p>Clique no botão abaixo para visualizar a tabela de jogos da Copa do Mundo 2026:</p>
+            
+            <button class="btn-jogos" onclick="mostrarTabela()">Mostrar Tabela de Jogos</button>
+            
+            <div id="tabela-jogos"></div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            © 2026 - Avaliação Prática de FrontEnd
+        </footer>
+    </div>
+
+    <script>
+        function mostrarTabela() {
+            const container = document.getElementById('tabela-jogos');
+            
+            // Verifica se já foi inserida
+            if (container.querySelector('img')) {
+                alert('A tabela já está sendo exibida!');
+                return;
+            }
+
+            // Cria a imagem
+            const img = document.createElement('img');
+            img.src = 'Tabela_Jogos.png';  // caminho da imagem
+            img.alt = 'Tabela de Jogos da Copa do Mundo 2026';
+            img.style.maxWidth = '100%';
+            
+            container.appendChild(img);
+        }
+    </script>
+
+</body>
+</html>
