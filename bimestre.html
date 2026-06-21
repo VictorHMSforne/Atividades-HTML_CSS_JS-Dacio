@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projetos - Bimestre</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <script src="projects.js"></script>
+  <style>
+    /* ===== RESET / BASE ===== */
+    :root {
+      --void: #03060f;
+      --deep-blue: #0a1a3d;
+      --mid-blue: #15356e;
+      --ice: #aeefff;
+      --signal: #5ad1ff;
+      --text-dim: #6b85b0;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--void);
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--ice);
+    }
+
+    /* ===== BACKGROUND ===== */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 120% 80% at 50% 110%, var(--mid-blue) 0%, var(--deep-blue) 35%, var(--void) 75%);
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(0deg, rgba(174, 239, 255, 0.025) 0px, rgba(174, 239, 255, 0.025) 1px, transparent 1px, transparent 3px);
+      opacity: 0.5;
+    }
+    .grid-floor {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background-image: linear-gradient(rgba(90, 209, 255, 0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(90, 209, 255, 0.18) 1px, transparent 1px);
+      background-size: 60px 32px;
+      transform: perspective(400px) rotateX(60deg);
+      transform-origin: bottom;
+      mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 90%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 90%);
+      animation: floorScroll 6s linear infinite;
+    }
+    @keyframes floorScroll {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 0 32px;
+      }
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(1px);
+      opacity: 0.5;
+      animation: float 9s ease-in-out infinite;
+    }
+    .orb1 {
+      width: 6px;
+      height: 6px;
+      background: var(--signal);
+      top: 18%;
+      left: 12%;
+      animation-delay: 0s;
+    }
+    .orb2 {
+      width: 4px;
+      height: 4px;
+      background: var(--ice);
+      top: 30%;
+      left: 85%;
+      animation-delay: 2s;
+    }
+    .orb3 {
+      width: 8px;
+      height: 8px;
+      background: var(--signal);
+      top: 60%;
+      left: 8%;
+      animation-delay: 4s;
+    }
+    .orb4 {
+      width: 5px;
+      height: 5px;
+      background: var(--ice);
+      top: 70%;
+      left: 90%;
+      animation-delay: 1.5s;
+    }
+    .orb5 {
+      width: 4px;
+      height: 4px;
+      background: var(--signal);
+      top: 12%;
+      left: 50%;
+      animation-delay: 3s;
+    }
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-30px) scale(1.4);
+        opacity: 0.8;
+      }
+    }
+
+    /* ===== LAYOUT ===== */
+    .screen {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HEADER ===== */
+    .carousel-header {
+      padding: 40px 56px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .carousel-header .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .carousel-header h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+      text-shadow: 0 0 24px rgba(90, 209, 255, 0.5);
+    }
+    .carousel-header h1 span {
+      color: var(--signal);
+    }
+    .back-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ice);
+      background: rgba(10, 26, 61, 0.5);
+      border: 1px solid rgba(174, 239, 255, 0.25);
+      border-radius: 999px;
+      padding: 8px 18px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      background: rgba(90, 209, 255, 0.18);
+      border-color: var(--signal);
+    }
+    .back-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ===== CARROSSEL 3D ===== */
+    .stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1800px;
+      position: relative;
+    }
+
+    .carousel-3d {
+      position: relative;
+      width: 260px;
+      height: 320px;
+      transform-style: preserve-3d;
+    }
+
+    .cover-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 340px;
+      border-radius: 12px;
+      background: linear-gradient(160deg, var(--cov-a), var(--cov-b));
+      cursor: pointer;
+      transition: transform 0.6s cubic-bezier(.2, .8, .2, 1), filter 0.6s, box-shadow 0.6s;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      border: 2px solid rgba(174, 239, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      overflow: hidden;
+      /* Reflexo estilo PS2 */
+      box-reflect: below 0px linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.3));
+      -webkit-box-reflect: below 0px linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.3));
+    }
+
+    .cover-item .icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 16px rgba(174, 239, 255, 0.6));
+    }
+    .cover-item .cov-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #fff;
+    }
+    .cover-item .cov-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .cover-item .cov-desc {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 10px;
+      line-height: 1.4;
+      max-height: 2.8em;
+      overflow: hidden;
+    }
+    .cover-item .cov-stack {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .cover-item .cov-stack span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border: 1px solid rgba(90, 209, 255, 0.35);
+      border-radius: 999px;
+      color: var(--signal);
+      background: rgba(90, 209, 255, 0.06);
+    }
+
+    /* Brilho no card ativo (Wii/PS3 style) */
+    .cover-item.active {
+      filter: brightness(1.15) drop-shadow(0 0 30px rgba(90, 209, 255, 0.5));
+      border-color: var(--signal);
+      box-shadow: 0 0 40px rgba(90, 209, 255, 0.3), 0 20px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    /* ===== NAVEGAÇÃO ===== */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid rgba(174, 239, 255, 0.25);
+      background: rgba(10, 26, 61, 0.6);
+      color: var(--ice);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      backdrop-filter: blur(4px);
+    }
+    .nav-arrow:hover {
+      background: rgba(90, 209, 255, 0.2);
+      border-color: var(--signal);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .nav-arrow.left {
+      left: 40px;
+    }
+    .nav-arrow.right {
+      right: 40px;
+    }
+    .nav-arrow svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* ===== INFO PANEL ===== */
+    .info-panel {
+      flex-shrink: 0;
+      text-align: center;
+      padding: 16px 20px 24px;
+      min-height: 100px;
+    }
+    .info-panel .title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      transition: opacity 0.4s;
+    }
+    .info-panel .desc {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin: 8px auto 0;
+      line-height: 1.5;
+    }
+    .info-panel .actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--void);
+      background: var(--signal);
+      padding: 9px 22px;
+      border-radius: 4px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      font-weight: 700;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(90, 209, 255, 0.4);
+    }
+    .btn.secondary {
+      background: transparent;
+      color: var(--ice);
+      border: 1px solid rgba(174, 239, 255, 0.3);
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(174, 239, 255, 0.2);
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+    .dot.active {
+      background: var(--signal);
+      transform: scale(1.5);
+      box-shadow: 0 0 10px rgba(90, 209, 255, 0.5);
+    }
+
+    .footer-hint {
+      text-align: center;
+      padding-bottom: 16px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .footer-hint kbd {
+      border: 1px solid rgba(174, 239, 255, 0.25);
+      border-radius: 3px;
+      padding: 1px 6px;
+      margin: 0 3px;
+      color: var(--ice);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px;
+      color: var(--text-dim);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 700px) {
+      .carousel-header {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .carousel-header h1 {
+        font-size: 1.5rem;
+      }
+      .nav-arrow {
+        width: 40px;
+        height: 40px;
+      }
+      .nav-arrow.left {
+        left: 12px;
+      }
+      .nav-arrow.right {
+        right: 12px;
+      }
+      .cover-item {
+        width: 200px;
+        height: 270px;
+        padding: 18px;
+      }
+      .carousel-3d {
+        width: 200px;
+        height: 270px;
+      }
+      .cover-item .icon {
+        font-size: 2.2rem;
+      }
+      .cover-item .cov-title {
+        font-size: 0.95rem;
+      }
+      .info-panel .desc {
+        font-size: 0.7rem;
+        padding: 0 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg">
+    <div class="grid-floor"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="orb orb4"></div>
+    <div class="orb orb5"></div>
+  </div>
+
+  <div class="screen">
+    <div class="carousel-header">
+      <div>
+        <div class="eyebrow">// system / carrossel</div>
+        <h1 id="bimestreTitle">—</h1>
+      </div>
+      <a href="index.html" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+        Voltar
+      </a>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="nav-arrow left" id="prevBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </div>
+      <div class="carousel-3d" id="carousel3d"></div>
+      <div class="nav-arrow right" id="nextBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="info-panel">
+      <div class="title" id="infoTitle">—</div>
+      <div class="desc" id="infoDesc"></div>
+      <div class="actions" id="infoActions"></div>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <div class="footer-hint">
+      <kbd>&larr;</kbd><kbd>&rarr;</kbd> navegar &nbsp;&nbsp; <kbd>ENTER</kbd> abrir &nbsp;&nbsp; <kbd>ESC</kbd> voltar
+    </div>
+  </div>
+
+  <script>
+    // =========================================================
+    // LÓGICA DO CARROSSEL 3D
+    // =========================================================
+
+    // Pega o ID da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const bimestreId = urlParams.get('id') || '1';
+
+    // Atualiza título
+    const bimestre = bimestres.find(b => b.id === bimestreId);
+    if (bimestre) {
+      document.getElementById('bimestreTitle').innerHTML =
+        `${bimestre.title} <span style="color:var(--signal)">Projetos</span>`;
+    }
+
+    // Filtra projetos
+    const projetos = projects.filter(p => p.bimestre === bimestreId);
+    let current = 0;
+    let total = projetos.length;
+
+    const carousel = document.getElementById('carousel3d');
+    const dotsWrap = document.getElementById('dots');
+    const infoTitle = document.getElementById('infoTitle');
+    const infoDesc = document.getElementById('infoDesc');
+    const infoActions = document.getElementById('infoActions');
+
+    function buildCarousel() {
+      carousel.innerHTML = '';
+      dotsWrap.innerHTML = '';
+
+      if (total === 0) {
+        carousel.innerHTML = '<div class="empty-state">Nenhum projeto cadastrado neste bimestre ainda.</div>';
+        infoTitle.textContent = '—';
+        infoDesc.textContent = '';
+        infoActions.innerHTML = '';
+        return;
+      }
+
+      projetos.forEach((p, i) => {
+        const cover = document.createElement('div');
+        cover.className = 'cover-item';
+        cover.style.setProperty('--cov-a', p.colorA);
+        cover.style.setProperty('--cov-b', p.colorB);
+        cover.dataset.index = i;
+        cover.innerHTML = `
+          <div class="icon">${p.icon}</div>
+          <div class="cov-title">${p.title}</div>
+          <div class="cov-tag">${p.tag}</div>
+          <div class="cov-desc">${p.desc}</div>
+          <div class="cov-stack">${p.stack.map(s => `<span>${s}</span>`).join('')}</div>
+        `;
+        cover.addEventListener('click', () => {
+          if (i === current) openProject(p);
+          else { current = i; render(); }
+        });
+        carousel.appendChild(cover);
+
+        // Dots
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.addEventListener('click', () => { current = i; render(); });
+        dotsWrap.appendChild(dot);
+      });
+
+      render();
+    }
+
+    function render() {
+      const covers = carousel.querySelectorAll('.cover-item');
+      const n = covers.length;
+      if (n === 0) return;
+
+      const radius = 380;
+      const angleStep = 360 / n;
+      const startAngle = -current * angleStep;
+
+      covers.forEach((cover, i) => {
+        const angle = startAngle + i * angleStep;
+        const rad = (angle * Math.PI) / 180;
+        const x = radius * Math.sin(rad);
+        const z = radius * Math.cos(rad) - radius;
+        const isActive = i === current;
+
+        const scale = isActive ? 1 : 0.7;
+        const opacity = isActive ? 1 : 0.4;
+        const yRot = angle;
+
+        cover.style.transform = `translate3d(${x}px, 0, ${z}px) rotateY(${yRot}deg) scale(${scale})`;
+        cover.style.zIndex = isActive ? 100 : Math.round(50 + z);
+        cover.style.opacity = opacity;
+        cover.style.pointerEvents = isActive ? 'auto' : 'none';
+        cover.classList.toggle('active', isActive);
+      });
+
+      // Atualiza info
+      const p = projetos[current];
+      infoTitle.style.opacity = 0;
+      infoDesc.style.opacity = 0;
+
+      setTimeout(() => {
+        infoTitle.textContent = p.title;
+        infoDesc.textContent = p.desc;
+        infoActions.innerHTML = `
+          ${p.url ? `<a class="btn" href="${p.url}" target="_blank">Abrir Projeto</a>` : ''}
+          <a class="btn secondary" href="${p.url || '#'}" target="_blank">Detalhes</a>
+        `;
+        infoTitle.style.opacity = 1;
+        infoDesc.style.opacity = 1;
+      }, 200);
+
+      // Dots
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function openProject(p) {
+      if (p.url) window.open(p.url, '_blank');
+    }
+
+    function next() {
+      if (total === 0) return;
+      current = (current + 1) % total;
+      render();
+    }
+
+    function prev() {
+      if (total === 0) return;
+      current = (current - 1 + total) % total;
+      render();
+    }
+
+    // Event listeners
+    document.getElementById('nextBtn').addEventListener('click', next);
+    document.getElementById('prevBtn').addEventListener('click', prev);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { next(); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { prev(); e.preventDefault(); }
+      if (e.key === 'Enter' && total > 0) { openProject(projetos[current]); e.preventDefault(); }
+      if (e.key === 'Escape') { window.location.href = 'index.html'; }
+    });
+
+    // Touch
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+    document.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) prev();
+        else next();
+      }
+    });
+
+    buildCarousel();
+  </script>
+
+</body>
+
+</html>

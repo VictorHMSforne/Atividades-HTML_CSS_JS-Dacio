@@ -1,0 +1,287 @@
+:root {
+      --void: #03060f;
+      --deep-blue: #0a1a3d;
+      --mid-blue: #15356e;
+      --ice: #aeefff;
+      --signal: #5ad1ff;
+      --text-dim: #6b85b0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--void);
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--ice);
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 120% 80% at 50% 110%, var(--mid-blue) 0%, var(--deep-blue) 35%, var(--void) 75%);
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(0deg, rgba(174, 239, 255, 0.025) 0px, rgba(174, 239, 255, 0.025) 1px, transparent 1px, transparent 3px);
+      opacity: 0.5;
+    }
+
+    .grid-floor {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background-image: linear-gradient(rgba(90, 209, 255, 0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(90, 209, 255, 0.18) 1px, transparent 1px);
+      background-size: 60px 32px;
+      transform: perspective(400px) rotateX(60deg);
+      transform-origin: bottom;
+      mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 90%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 90%);
+      animation: floorScroll 6s linear infinite;
+    }
+
+    @keyframes floorScroll {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 0 32px;
+      }
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(1px);
+      opacity: 0.5;
+      animation: float 9s ease-in-out infinite;
+    }
+
+    .orb1 {
+      width: 6px;
+      height: 6px;
+      background: var(--signal);
+      top: 18%;
+      left: 12%;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 4px;
+      height: 4px;
+      background: var(--ice);
+      top: 30%;
+      left: 85%;
+      animation-delay: 2s;
+    }
+
+    .orb3 {
+      width: 8px;
+      height: 8px;
+      background: var(--signal);
+      top: 60%;
+      left: 8%;
+      animation-delay: 4s;
+    }
+
+    .orb4 {
+      width: 5px;
+      height: 5px;
+      background: var(--ice);
+      top: 70%;
+      left: 90%;
+      animation-delay: 1.5s;
+    }
+
+    .orb5 {
+      width: 4px;
+      height: 4px;
+      background: var(--signal);
+      top: 12%;
+      left: 50%;
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+      }
+
+      50% {
+        transform: translateY(-30px) scale(1.4);
+        opacity: 0.8;
+      }
+    }
+
+    .screen {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .select-header {
+      padding: 40px 56px 0;
+      flex-shrink: 0;
+    }
+
+    .select-header .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .select-header h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+      text-shadow: 0 0 24px rgba(90, 209, 255, 0.5);
+    }
+
+    .select-header h1 span {
+      color: var(--signal);
+    }
+
+    .cards-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      perspective: 1200px;
+    }
+
+    .memcard {
+      width: 220px;
+      height: 280px;
+      border-radius: 14px;
+      background: linear-gradient(160deg, var(--mc-a), var(--mc-b));
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      transition: transform 0.4s cubic-bezier(.2, .8, .2, 1), box-shadow 0.4s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 22px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .memcard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 14px);
+    }
+
+    .memcard::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      width: 34px;
+      height: 10px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 16px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .memcard:hover {
+      transform: translateY(-14px) scale(1.04);
+      box-shadow: 0 35px 90px rgba(90, 209, 255, 0.3), inset 0 0 0 1px rgba(174, 239, 255, 0.4);
+    }
+
+    .memcard .mc-icon {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 14px rgba(174, 239, 255, 0.5));
+    }
+
+    .memcard .mc-bimestre {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .memcard .mc-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 2px;
+    }
+
+    .memcard .mc-count {
+      margin-top: 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .select-footer {
+      text-align: center;
+      padding-bottom: 30px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .select-footer kbd {
+      border: 1px solid rgba(174, 239, 255, 0.25);
+      border-radius: 3px;
+      padding: 1px 6px;
+      margin: 0 3px;
+      color: var(--ice);
+    }
+
+    @media (max-width: 700px) {
+      .select-header {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .select-header h1 {
+        font-size: 1.5rem;
+      }
+
+      .cards-wrap {
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .memcard {
+        width: 180px;
+        height: 220px;
+      }
+    }
